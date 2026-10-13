@@ -2,6 +2,8 @@
 
 A formal, declarative spec for agent stop conditions — termination predicates, turn budgets, token ceilings, no-progress windows — plus a structural validator and an unreachable-termination detector that runs *before* the agent does. This is a spec and static checker, not a runtime stopper. Pure standard library, single file, offline. *Adjacent to framework built-ins, not equivalent to them.*
 
+<p align="center"><img src="docs/demo.gif" alt="demo" width="720"></p>
+
 ## Problem
 
 Every agent framework ships stop logic — AutoGen has `TerminationCondition`, LangGraph has recursion limits, Claude-family CLIs have stop hooks. But the stop policy is scattered across framework calls, hardcoded constants, and tribal knowledge, so "why did the agent stop (or not)?" is answered by reading code. There is no framework-independent artifact that declares the stop conditions, can be reviewed like code, and can be statically checked for self-contradiction — e.g. a predicate that requires 10 turns under a 5-turn budget.
